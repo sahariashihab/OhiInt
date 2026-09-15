@@ -6,12 +6,12 @@ Before running this project, make sure you have the following installed:
 
 - **Node.js** (v18 or newer recommended)
 - **npm** (comes with Node.js)
-- **Wrangler CLI**
+- **Vercel** (optional, for CLI deployments)
 
-Install Wrangler globally:
+Install the Vercel CLI globally if you want to deploy from the terminal:
 
 ```bash
-npm install -g wrangler
+npm install -g vercel
 ```
 
 Verify the installation:
@@ -19,7 +19,7 @@ Verify the installation:
 ```bash
 node -v
 npm -v
-wrangler --version
+vercel --version
 ```
 
 ---
@@ -29,8 +29,8 @@ wrangler --version
 Clone the repository:
 
 ```bash
-git clone https://github.com/imshihab/OHI_INT.git
-cd https://github.com/imshihab/OHI_INT.git
+git clone https://github.com/sahariashihab/OhiInt.git
+cd OhiInt
 ```
 
 Install project dependencies:
@@ -41,23 +41,11 @@ npm install
 
 ---
 
-## Important
-
-After cloning the repository for the **first time**, build the project once:
-
-```bash
-npm run build
-```
-
-This generates the initial `dist/` directory required by Wrangler.
-
----
-
 ## Running the Development Server
 
-Open **two terminal windows**.
+Open two terminal windows.
 
-### Terminal 1 — Start the Vite development server
+### Terminal 1: Start the Vite development server
 
 ```bash
 npm run dev
@@ -69,15 +57,33 @@ The application will be available at:
 http://localhost:5173
 ```
 
----
-
-### Terminal 2 — Start Cloudflare Pages
+### Terminal 2: Start the Vercel development server
 
 ```bash
-wrangler pages dev dist
+vercel dev
 ```
 
-This serves the built application using the Cloudflare Pages runtime.
+Vercel will make the application available at the local URL shown in the terminal, usually:
+
+```
+http://localhost:3000
+```
+
+The project is deployed with Vercel. Vercel automatically runs `npm run build` and serves the generated `dist/` directory.
+
+### Deploy with Vercel
+
+You can import the repository from the [Vercel dashboard](https://vercel.com/new), or deploy with the CLI:
+
+```bash
+vercel
+```
+
+For a production deployment:
+
+```bash
+vercel --prod
+```
 
 ---
 
@@ -107,21 +113,21 @@ npm run preview
 
 After the initial setup:
 
-1. Start the Vite development server:
+1. In the first terminal, start the Vite development server:
 
    ```bash
    npm run dev
    ```
 
-2. In another terminal, start Cloudflare Pages:
+2. In the second terminal, start the Vercel development server:
 
    ```bash
-   wrangler pages dev dist
+   vercel dev
    ```
 
 3. Make your changes.
 
-4. If you modify Cloudflare-specific code or need an updated production build, rebuild:
+4. Verify the production build when needed:
 
    ```bash
    npm run build
@@ -131,9 +137,8 @@ After the initial setup:
 
 ## Notes
 
-- Run `npm install` only once after cloning.
-- Run `npm run build` once before starting `wrangler pages dev`.
-- Keep **both terminals running** during development.
+- Run `npm install` once after cloning.
+- Vercel builds the project automatically during deployment.
 - If dependencies change, run:
 
   ```bash
