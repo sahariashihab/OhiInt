@@ -35,13 +35,18 @@ export default function Footer({ data }) {
                 className="container-custom py-16"
             >
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
-                    <motion.div variants={slideUpVariants} className="lg:col-span-1">
+                    <motion.div
+                        variants={slideUpVariants}
+                        className="lg:col-span-1"
+                    >
                         <img
                             alt="Footer logo"
                             className="h-14 w-auto object-contain mb-4 brightness-0 invert"
                             src={data.logo}
                         />
-                        <p className="text-white/60 font-light mb-6">{data.tagline}</p>
+                        <p className="text-white/60 font-light mb-6">
+                            {data.tagline}
+                        </p>
                         <div className="flex space-x-4">
                             <a
                                 href={data.social.facebook}
@@ -76,7 +81,11 @@ export default function Footer({ data }) {
                                             href={`tel:${col.phone.replace(/\s/g, "")}`}
                                             className="flex items-center gap-3 text-white/60 hover:text-white transition-colors font-light text-sm"
                                         >
-                                            <Icon name="phone" filled={false} size={16} />
+                                            <Icon
+                                                name="phone"
+                                                filled={false}
+                                                size={16}
+                                            />
                                             {col.phone}
                                         </a>
                                     </li>
@@ -85,13 +94,22 @@ export default function Footer({ data }) {
                                             href={`mailto:${col.email}`}
                                             className="flex items-center gap-3 text-white/60 hover:text-white transition-colors font-light text-sm"
                                         >
-                                            <Icon name="mail" filled={false} size={16} />
+                                            <Icon
+                                                name="mail"
+                                                filled={false}
+                                                size={16}
+                                            />
                                             {col.email}
                                         </a>
                                     </li>
                                     <li>
                                         <div className="flex items-start gap-3 text-white/60 font-light text-sm">
-                                            <Icon name="location_on" size={16} filled={false} className="shrink-0 mt-0.5" />
+                                            <Icon
+                                                name="location_on"
+                                                size={16}
+                                                filled={false}
+                                                className="shrink-0 mt-0.5"
+                                            />
                                             <span>
                                                 {col.addressLine1}
                                                 <br />
@@ -118,47 +136,49 @@ export default function Footer({ data }) {
                     ))}
                 </div>
 
-                <motion.div
-                    variants={slideUpVariants}
-                    className="mt-16 pt-12 border-t border-white/10 flex flex-col md:flex-row justify-between items-start md:items-center gap-8"
-                >
-                    <div className="max-w-md w-full">
-                        <h4 className="text-lg font-serif font-light mb-4">
-                            {data.newsletter.heading}
-                        </h4>
-                        <p className="text-white/60 mb-6 text-sm font-light">
-                            {data.newsletter.description}
-                        </p>
-                        <form
-                            className="flex flex-col sm:flex-row gap-4"
-                            onSubmit={(e) => e.preventDefault()}
-                        >
-                            <input
-                                placeholder={data.newsletter.placeholder}
-                                className="flex-1 px-4 py-3 bg-white/10 border border-white/20 text-white placeholder-white/40 focus:outline-none focus:border-white/50 transition-colors text-sm"
-                                type="email"
-                            />
-                            <button
-                                type="submit"
-                                className="px-6 py-3 bg-white text-primary hover:bg-gray-100 transition-colors text-sm tracking-wider uppercase font-light cursor-pointer"
-                            >
-                                {data.newsletter.button}
-                            </button>
-                        </form>
-                    </div>
-                    <a
-                        href={data.complaintsBookUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="hover:opacity-80 transition-opacity shrink-0"
+                {data.newsletter?.visible !== false && (
+                    <motion.div
+                        variants={slideUpVariants}
+                        className="mt-16 pt-12 border-t border-white/10 flex flex-col md:flex-row justify-between items-start md:items-center gap-8"
                     >
-                        <img
-                            alt={data.complaintsBookAlt}
-                            className="h-16 w-auto object-contain brightness-0 invert"
-                            src={data.complaintsBookImage}
-                        />
-                    </a>
-                </motion.div>
+                        <div className="max-w-md w-full">
+                            <h4 className="text-lg font-serif font-light mb-4">
+                                {data.newsletter.heading}
+                            </h4>
+                            <p className="text-white/60 mb-6 text-sm font-light">
+                                {data.newsletter.description}
+                            </p>
+                            <form
+                                className="flex flex-col sm:flex-row gap-4"
+                                onSubmit={(e) => e.preventDefault()}
+                            >
+                                <input
+                                    placeholder={data.newsletter.placeholder}
+                                    className="flex-1 px-4 py-3 bg-white/10 border border-white/20 text-white placeholder-white/40 focus:outline-none focus:border-white/50 transition-colors text-sm"
+                                    type="email"
+                                />
+                                <button
+                                    type="submit"
+                                    className="px-6 py-3 bg-white text-primary hover:bg-gray-100 transition-colors text-sm tracking-wider uppercase font-light cursor-pointer"
+                                >
+                                    {data.newsletter.button}
+                                </button>
+                            </form>
+                        </div>
+                        <a
+                            href={data.complaintsBookUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="hover:opacity-80 transition-opacity shrink-0"
+                        >
+                            <img
+                                alt={data.complaintsBookAlt}
+                                className="h-16 w-auto object-contain brightness-0 invert"
+                                src={data.complaintsBookImage}
+                            />
+                        </a>
+                    </motion.div>
+                )}
             </motion.div>
 
             <div className="bg-black/20">
@@ -166,11 +186,31 @@ export default function Footer({ data }) {
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true, amount: 0.5 }}
-                    transition={{ duration: 0.8, ease: EASE_OUT_EXPO, delay: 0.3 }}
+                    transition={{
+                        duration: 0.8,
+                        ease: EASE_OUT_EXPO,
+                        delay: 0.3,
+                    }}
                     className="container-custom py-6"
                 >
-                    <div className="flex flex-col md:flex-row justify-between items-center text-center md:text-left">
-                        <p className="text-white/50 text-sm font-light">© {data.copyright}</p>
+                    <div className="flex flex-col sm:flex-row justify-between items-center gap-4 text-center md:text-left">
+                        <p className="text-white/50 text-sm font-light">
+                            © {data.copyright}
+                        </p>
+                        <a
+                            href="https://enigmanite.com"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            aria-label="Developed by Enigmanite"
+                            className="flex items-center gap-2 text-white/50 text-sm font-light hover:text-white transition-colors"
+                        >
+                            <span>Developed by</span>
+                            <img
+                                src="/Enigmanite.png"
+                                alt="Enigmanite"
+                                className="h-7 w-28 object-cover object-center bg-transparent"
+                            />
+                        </a>
                     </div>
                 </motion.div>
             </div>

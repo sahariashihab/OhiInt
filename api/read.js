@@ -19,6 +19,11 @@ export default async function handler(req, res) {
         const row = result.rows[0];
         const siteData = row?.data ? JSON.parse(row.data) : {};
 
+        // Keep older database rows compatible with the newsletter visibility setting.
+        if (siteData.footer?.newsletter) {
+            siteData.footer.newsletter.visible ??= true;
+        }
+
         res.setHeader("Cache-Control", "no-store, no-cache, must-revalidate");
         res.setHeader("Pragma", "no-cache");
         res.setHeader("Expires", "0");

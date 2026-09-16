@@ -138,7 +138,7 @@ INSERT INTO site_content (id, data) VALUES (1, '{
             { "heading": "Enterprise", "links": [ { "text": "Who We Are", "href": "/quem-somos" }, { "text": "Insights", "href": "/insights" }, { "text": "Privacy Policy", "href": "/privacidade" }, { "text": "Terms and Conditions", "href": "/termos" } ] },
             { "heading": "Contacts", "isContact": true, "phone": "+351 912 766 171", "email": "info@bluelogistics.pt", "addressLine1": "Avenida da Liberdade, Nº 224, 2º", "addressLine2": "1250-148 Lisboa" }
         ],
-        "newsletter": { "heading": "Receive Our News", "description": "Subscribe to receive information about industry regulations and trends.", "placeholder": "your@email.com", "button": "Subscribe" },
+        "newsletter": { "visible": true, "heading": "Receive Our News", "description": "Subscribe to receive information about industry regulations and trends.", "placeholder": "your@email.com", "button": "Subscribe" },
         "complaintsBookUrl": "https://www.livroreclamacoes.pt/inicio/",
         "complaintsBookImage": "/livro_reclamacoes.png",
         "complaintsBookAlt": "Electronic Complaints Book",

@@ -38,10 +38,23 @@ function Field({
 }) {
     return (
         <div>
-            <label className="block text-[10px] font-black uppercase tracking-widest text-neo-black mb-2 border-l-4 border-neo-yellow pl-2">
+            <div className="block text-[10px] font-black uppercase tracking-widest text-neo-black mb-2 border-l-4 border-neo-yellow pl-2">
                 {label}
-            </label>
-            {multiline ? (
+            </div>
+            {type === "checkbox" ? (
+                <button
+                    type="button"
+                    aria-pressed={Boolean(value)}
+                    onClick={() => onChange(!value)}
+                    className={`w-full border-2 border-neo-black px-4 py-3 text-left text-xs font-black uppercase tracking-widest shadow-neo transition active:translate-x-px active:translate-y-px active:shadow-neo-sm cursor-pointer ${
+                        value
+                            ? "bg-neo-green text-white"
+                            : "bg-neo-red text-white"
+                    }`}
+                >
+                    Newsletter: {value ? "Shown" : "Hidden"}
+                </button>
+            ) : multiline ? (
                 <Textarea
                     value={value ?? ""}
                     onChange={(e) => onChange(e.target.value)}
@@ -127,7 +140,7 @@ function ObjectEditor({ data, onChange, depth = 0 }) {
                         {isPrimitive ? (
                             <Field
                                 label={key}
-                                value={String(value)}
+                                value={value}
                                 multiline={
                                     typeof value === "string" &&
                                     value.length > 60
@@ -137,9 +150,10 @@ function ObjectEditor({ data, onChange, depth = 0 }) {
                                     if (typeof value === "number")
                                         parsed = Number(v) || 0;
                                     else if (typeof value === "boolean")
-                                        parsed = v === "true";
+                                        parsed = v;
                                     onChange({ ...data, [key]: parsed });
                                 }}
+                                type={typeof value === "boolean" ? "checkbox" : "text"}
                             />
                         ) : (
                             <details
