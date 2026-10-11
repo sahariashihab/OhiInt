@@ -29,7 +29,7 @@ export default function Landing() {
             <Trust />
             <Stats />
             <About />
-            <Services data={data.services} />
+            <Services />
             <section className="section-padding bg-linear-to-br from-blue-950 via-blue-800 to-blue-600 relative overflow-hidden">
                 {/* Decorative blur */}
                 <div className="absolute -top-32 -right-32 h-80 w-80 rounded-full bg-white/10 blur-3xl" />

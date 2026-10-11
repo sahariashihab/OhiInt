@@ -46,9 +46,53 @@ const cardVariants = {
     },
 };
 
-export default function Services({ data }) {
+export default function Services() {
+    const items = [
+        {
+            icon: "directions_boat",
+            title: "Maritime Transport",
+            description:
+                "Full-service FCL and LCL shipping to major ports worldwide.",
+        },
+        {
+            icon: "flight",
+            title: "Air Transport",
+            description:
+                "Fast and efficient air freight solutions for urgent cargo worldwide.",
+        },
+        {
+            icon: "local_shipping",
+            title: "Road Transport",
+            description:
+                "National and European road transport with our own fleet and trusted partners.",
+        },
+        {
+            icon: "warehouse",
+            title: "Storage and Logistics",
+            description:
+                "Integrated warehousing and logistics management solutions to optimize your supply chain.",
+        },
+        {
+            icon: "fact_check",
+            title: "Customs Clearance",
+            description:
+                "Full-service customs clearance and international trade consulting.",
+        },
+        {
+            icon: "inventory_2",
+            title: "Special Cargo",
+            description:
+                "Transportation of special and oversized cargo, and turnkey industrial projects.",
+        },
+        {
+            icon: "moving",
+            title: "Changes",
+            description:
+                "Residential and commercial removals with vans and specialized personnel in Portugal.",
+        },
+    ];
     return (
-        <section className="section-padding">
+        <section className="section-padding" id="services">
             <div className="bg-secondary/30 overflow-hidden">
                 <div className="container-custom">
                     <motion.div
@@ -62,14 +106,14 @@ export default function Services({ data }) {
                             variants={headerItemVariants}
                             className="text-accent text-sm font-light tracking-[0.2em] uppercase inline-block"
                         >
-                            {data.badge}
+                            Our Services
                         </motion.span>
 
                         <motion.h2
                             variants={headerItemVariants}
                             className="text-2xl md:text-3xl lg:text-4xl font-bold leading-tight text-primary mt-3 mb-6"
                         >
-                            {data.heading}
+                            Complete Logistics Solutions
                         </motion.h2>
 
                         <motion.div
@@ -93,7 +137,9 @@ export default function Services({ data }) {
                             variants={headerItemVariants}
                             className="text-gray-600 font-light mt-6 max-w-2xl mx-auto"
                         >
-                            {data.description}
+                            We offer a full range of transport and logistics
+                            services to meet all the needs of your international
+                            business.
                         </motion.p>
                     </motion.div>
 
@@ -104,7 +150,7 @@ export default function Services({ data }) {
                         whileInView="show"
                         viewport={{ once: true, amount: 0.2 }}
                     >
-                        {data.items.map((s, i) => (
+                        {items.map((s, i) => (
                             <motion.div
                                 key={s.title}
                                 variants={cardVariants}
@@ -162,62 +208,8 @@ export default function Services({ data }) {
                                 <p className="mb-6 text-sm leading-7 text-gray-600">
                                     {s.description}
                                 </p>
-
-                                {/* Link */}
-                                <motion.a
-                                    href={s.href}
-                                    whileHover={{ x: 4 }}
-                                    transition={{
-                                        type: "spring",
-                                        stiffness: 320,
-                                        damping: 20,
-                                    }}
-                                    className="inline-flex items-center gap-2 text-sm font-medium text-accent hover:text-primary"
-                                >
-                                    Learn More
-                                    <motion.span
-                                        animate={{ x: [0, 4, 0] }}
-                                        transition={{
-                                            duration: 1.6,
-                                            repeat: Infinity,
-                                            ease: "easeInOut",
-                                        }}
-                                    >
-                                        <Icon name="arrow_forward" size={18} />
-                                    </motion.span>
-                                </motion.a>
                             </motion.div>
                         ))}
-                    </motion.div>
-
-                    <motion.div
-                        className="text-center mt-12"
-                        initial={{ opacity: 0, y: 20 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true, amount: 0.5 }}
-                        transition={{
-                            duration: 1,
-                            ease: EASE_OUT_EXPO,
-                            delay: 0.3,
-                        }}
-                    >
-                        <motion.a
-                            href={data.viewAllCta.href}
-                            whileHover={{
-                                backgroundColor: "#1f3a5f",
-                                color: "#ffffff",
-                                scale: 1.04,
-                            }}
-                            whileTap={{ scale: 0.97 }}
-                            transition={{
-                                type: "spring",
-                                stiffness: 280,
-                                damping: 18,
-                            }}
-                            className="btn border border-primary bg-transparent text-primary inline-block"
-                        >
-                            {data.viewAllCta.text}
-                        </motion.a>
                     </motion.div>
                 </div>
             </div>
