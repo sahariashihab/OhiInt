@@ -46,7 +46,7 @@ export default function Trust() {
     ];
     return (
         <section
-            className="py-12 bg-white border-b border-gray-200 overflow-hidden"
+            className="py-24 bg-white border-b border-gray-200 overflow-hidden"
             id="companies"
         >
             <motion.div

@@ -2,6 +2,7 @@ import Navbar from "../components/Navbar";
 import Hero from "../components/Hero";
 import { useContent } from "../hooks/useContent";
 import Trust from "../components/Trust";
+import Shipping from "../components/Shipping";
 import Stats from "../components/Stats";
 import About from "../components/About";
 import Services from "../components/Services";
@@ -12,7 +13,6 @@ import Testimonials from "../components/Testimonials";
 import CTA from "../components/CTA";
 import Footer from "../components/Footer";
 import Loader from "../components/Loader";
-import { useEffect } from "react";
 
 export default function Landing() {
     // TODO: Remove Fetch later.
@@ -27,6 +27,7 @@ export default function Landing() {
             <Navbar />
             <Hero />
             <Trust />
+            <Shipping />
             <Stats />
             <About />
             <Services />
