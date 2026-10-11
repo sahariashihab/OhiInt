@@ -15,42 +15,17 @@ import Loader from "../components/Loader";
 import { useEffect } from "react";
 
 export default function Landing() {
+
+    // TODO: Remove Fetch later.
+
     const { data, loading, error } = useContent();
-
-    useEffect(() => {
-        if (data?.siteTitle) {
-            document.title = data.siteTitle.toUpperCase();
-        }
-    }, [data?.siteTitle]);
-
-    // First-ever load (no cache yet): show full-page loader.
     if (loading && !data) {
         return <Loader />;
     }
 
-    // No cache + fetch failed: show a clear error instead of crashing.
-    if (!data) {
-        return (
-            <div className="min-h-screen flex flex-col items-center justify-center text-center px-4">
-                <h1 className="text-2xl font-bold text-gray-800 mb-2">
-                    Unable to load content
-                </h1>
-                <p className="text-gray-500 mb-4">
-                    {error || "Please check your connection and try again."}
-                </p>
-                <button
-                    onClick={() => window.location.reload()}
-                    className="px-4 py-2 rounded bg-accent text-white font-medium hover:opacity-90"
-                >
-                    Retry
-                </button>
-            </div>
-        );
-    }
-
     return (
         <div className="min-h-screen bg-white">
-            <Navbar data={data.navbar} />
+            <Navbar />
             <Hero data={data.hero} />
             <Trust data={data.trust} />
             <Stats data={data.stats} />
