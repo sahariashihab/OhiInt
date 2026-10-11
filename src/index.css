@@ -28,6 +28,10 @@ body {
     overflow-x: hidden;
 }
 
+:target {
+    scroll-margin-top: 104px;
+}
+
 .nav-container {
     width: 100%;
     max-width: 1440px;

@@ -15,7 +15,6 @@ import Loader from "../components/Loader";
 import { useEffect } from "react";
 
 export default function Landing() {
-
     // TODO: Remove Fetch later.
 
     const { data, loading, error } = useContent();
@@ -26,8 +25,8 @@ export default function Landing() {
     return (
         <div className="min-h-screen bg-white">
             <Navbar />
-            <Hero data={data.hero} />
-            <Trust data={data.trust} />
+            <Hero />
+            <Trust />
             <Stats data={data.stats} />
             <section className="section-padding">
                 <About data={data.about} />
