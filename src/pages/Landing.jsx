@@ -28,16 +28,9 @@ export default function Landing() {
             <Hero />
             <Trust />
             <Stats />
-            <section className="section-padding">
-                <About data={data.about} />
-            </section>
-            <section className="section-padding">
-                <Services data={data.services} />
-            </section>
-            <section
-                id="about"
-                className="section-padding bg-linear-to-br from-blue-950 via-blue-800 to-blue-600 relative overflow-hidden"
-            >
+            <About />
+            <Services data={data.services} />
+            <section className="section-padding bg-linear-to-br from-blue-950 via-blue-800 to-blue-600 relative overflow-hidden">
                 {/* Decorative blur */}
                 <div className="absolute -top-32 -right-32 h-80 w-80 rounded-full bg-white/10 blur-3xl" />
                 <div className="absolute -bottom-32 -left-32 h-80 w-80 rounded-full bg-accent/20 blur-3xl" />
