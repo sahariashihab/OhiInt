@@ -27,7 +27,7 @@ export default function Landing() {
             <Navbar />
             <Hero />
             <Trust />
-            <Stats data={data.stats} />
+            <Stats />
             <section className="section-padding">
                 <About data={data.about} />
             </section>

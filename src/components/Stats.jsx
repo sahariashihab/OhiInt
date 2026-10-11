@@ -1,5 +1,12 @@
 import { useEffect, useRef, useState } from "react";
-import { motion, useInView, useMotionValue, useTransform, animate, useReducedMotion } from "framer-motion";
+import {
+    motion,
+    useInView,
+    useMotionValue,
+    useTransform,
+    animate,
+    useReducedMotion,
+} from "framer-motion";
 import Icon from "./Icon";
 
 const EASE_OUT_EXPO = [0.16, 1, 0.3, 1];
@@ -35,7 +42,6 @@ const iconVariants = {
     },
 };
 
-// Parses strings like "25+", "15,000+", "120+", "98%" into { value, suffix }.
 // If the number can't be parsed, returns null so we just render the original string.
 function parseStat(raw) {
     if (typeof raw !== "string") return null;
@@ -56,7 +62,9 @@ function AnimatedNumber({ value, suffix, original }) {
         const intPart = Math.floor(latest);
         return intPart.toLocaleString("en-US");
     });
-    const [display, setDisplay] = useState(prefersReducedMotion ? value.toLocaleString("en-US") : "0");
+    const [display, setDisplay] = useState(
+        prefersReducedMotion ? value.toLocaleString("en-US") : "0",
+    );
 
     useEffect(() => {
         const unsub = rounded.on("change", (v) => setDisplay(v));
@@ -87,7 +95,29 @@ function AnimatedNumber({ value, suffix, original }) {
     );
 }
 
-export default function Stats({ data }) {
+export default function Stats() {
+    const Stats_ = [
+        {
+            icon: "schedule",
+            number: "8+",
+            label: "Years of Experience",
+        },
+        {
+            icon: "directions_boat",
+            number: "15,000+",
+            label: "Shipments per Year",
+        },
+        {
+            icon: "public",
+            number: "120+",
+            label: "Countries Covered",
+        },
+        {
+            icon: "workspace_premium",
+            number: "98%",
+            label: "Customer Satisfaction",
+        },
+    ];
     return (
         <section className="py-12 md:py-16 bg-white border-y border-gray-100 overflow-hidden">
             <motion.div
@@ -98,7 +128,7 @@ export default function Stats({ data }) {
                 viewport={{ once: true, amount: 0.25 }}
             >
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-                    {data.map((stat, i) => {
+                    {Stats_.map((stat, i) => {
                         const parsed = parseStat(stat.number);
                         return (
                             <motion.div
@@ -106,7 +136,11 @@ export default function Stats({ data }) {
                                 variants={cardVariants}
                                 whileHover={{
                                     y: -6,
-                                    transition: { type: "spring", stiffness: 280, damping: 18 },
+                                    transition: {
+                                        type: "spring",
+                                        stiffness: 280,
+                                        damping: 18,
+                                    },
                                 }}
                                 className="text-center will-change-transform"
                             >
