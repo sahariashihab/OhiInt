@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
 import Icon from "./Icon";
+import { href } from "react-router";
 
 const EASE_OUT_EXPO = [0.16, 1, 0.3, 1];
 
@@ -36,7 +37,11 @@ const desktopLinkVariants = {
 
 const ctaVariants = {
     hidden: { opacity: 0, y: -14 },
-    show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: EASE_OUT_EXPO, delay: 0.1 } },
+    show: {
+        opacity: 1,
+        y: 0,
+        transition: { duration: 0.6, ease: EASE_OUT_EXPO, delay: 0.1 },
+    },
 };
 
 const mobileMenuVariants = {
@@ -70,7 +75,11 @@ const mobileMenuVariants = {
 
 const mobileHeaderVariants = {
     hidden: { opacity: 0, y: -10 },
-    show: { opacity: 1, y: 0, transition: { duration: 0.5, ease: EASE_OUT_EXPO } },
+    show: {
+        opacity: 1,
+        y: 0,
+        transition: { duration: 0.5, ease: EASE_OUT_EXPO },
+    },
     exit: { opacity: 0, transition: { duration: 0.2 } },
 };
 
@@ -87,14 +96,45 @@ const mobileLinkVariants = {
 
 const mobileFooterVariants = {
     hidden: { opacity: 0, y: 24 },
-    show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: EASE_OUT_EXPO } },
+    show: {
+        opacity: 1,
+        y: 0,
+        transition: { duration: 0.6, ease: EASE_OUT_EXPO },
+    },
     exit: { opacity: 0, y: 16, transition: { duration: 0.25 } },
 };
 
-export default function Navbar({ data }) {
+export default function Navbar() {
     const [scrolled, setScrolled] = useState(false);
     const [mobileOpen, setMobileOpen] = useState(false);
     const prefersReducedMotion = useReducedMotion();
+
+    const links = [
+        {
+            href: "#hero",
+            text: "Start",
+        },
+        {
+            href: "#about",
+            text: "Who We Are",
+        },
+        {
+            href: "#services",
+            text: "Services",
+        },
+        {
+            href: "#network",
+            text: "Global Network",
+        },
+        {
+            href: "#insights",
+            text: "Insights",
+        },
+        {
+            href: "#contacts",
+            text: "Contacts",
+        },
+    ];
 
     useEffect(() => {
         const onScroll = () => setScrolled(window.scrollY > 20);
@@ -115,7 +155,10 @@ export default function Navbar({ data }) {
 
     const linkHover = prefersReducedMotion
         ? {}
-        : { scale: 1.06, transition: { type: "spring", stiffness: 320, damping: 18 } };
+        : {
+              scale: 1.06,
+              transition: { type: "spring", stiffness: 320, damping: 18 },
+          };
 
     return (
         <>
@@ -134,11 +177,15 @@ export default function Navbar({ data }) {
                             className="shrink-0 block"
                             whileHover={{ opacity: 0.85 }}
                             whileTap={{ scale: 0.97 }}
-                            transition={{ type: "spring", stiffness: 320, damping: 22 }}
+                            transition={{
+                                type: "spring",
+                                stiffness: 320,
+                                damping: 22,
+                            }}
                         >
                             <motion.img
-                                src={data?.logo}
-                                alt={data?.logoAlt || "Logo"}
+                                src={"/logo.png"}
+                                alt={"Logo"}
                                 className={`max-w-full h-14 xs:h-16 md:h-18 custom:h-16 lg:h-20 w-auto object-contain will-change-transform ${
                                     scrolled ? "" : "brightness-0 invert"
                                 }`}
@@ -159,7 +206,7 @@ export default function Navbar({ data }) {
                             animate="show"
                             onAnimationComplete={handleNavComplete}
                         >
-                            {data?.links?.map((link) => (
+                            {links.map((link) => (
                                 <motion.a
                                     key={link.href}
                                     href={link.href}
@@ -170,11 +217,14 @@ export default function Navbar({ data }) {
                                         scrolled ? "text-primary" : "text-white"
                                     }`}
                                 >
-                                    {link.title}
+                                    {link.text}
                                     <motion.span
                                         className="absolute left-1/2 -translate-x-1/2 -bottom-1 h-px w-0 bg-current"
                                         whileHover={{ width: "100%" }}
-                                        transition={{ duration: 0.6, ease: EASE_OUT_EXPO }}
+                                        transition={{
+                                            duration: 0.6,
+                                            ease: EASE_OUT_EXPO,
+                                        }}
                                     />
                                 </motion.a>
                             ))}
@@ -188,17 +238,21 @@ export default function Navbar({ data }) {
                             animate="show"
                             whileHover={{ scale: 1.04 }}
                             whileTap={{ scale: 0.96 }}
-                            transition={{ type: "spring", stiffness: 300, damping: 18 }}
+                            transition={{
+                                type: "spring",
+                                stiffness: 300,
+                                damping: 18,
+                            }}
                         >
                             <a
-                                href={data?.cta?.href}
+                                href={"#contacts"}
                                 className={`text-xs py-3 px-6 lg:px-8 whitespace-nowrap transition-all duration-300 ${
                                     scrolled
                                         ? "text-primary hover:bg-primary hover:text-white"
                                         : "text-white hover:bg-white hover:text-primary"
                                 }`}
                             >
-                                {data?.cta?.text}
+                                Request a Quote
                             </a>
                         </motion.div>
 
@@ -212,7 +266,11 @@ export default function Navbar({ data }) {
                                 aria-label="Open menu"
                                 whileHover={{ scale: 1.1, rotate: 90 }}
                                 whileTap={{ scale: 0.9 }}
-                                transition={{ type: "spring", stiffness: 320, damping: 18 }}
+                                transition={{
+                                    type: "spring",
+                                    stiffness: 320,
+                                    damping: 18,
+                                }}
                             >
                                 <Icon name="menu" size={24} />
                             </motion.button>
@@ -238,8 +296,8 @@ export default function Navbar({ data }) {
                                 className="flex items-center justify-between p-6 border-b border-gray-100"
                             >
                                 <img
-                                    src={data?.logo}
-                                    alt={data?.logoAlt || "Logo"}
+                                    src={"/logo.png"}
+                                    alt={"Logo"}
                                     className="h-12 w-auto max-w-full object-contain"
                                 />
 
@@ -249,7 +307,11 @@ export default function Navbar({ data }) {
                                     aria-label="Close menu"
                                     whileHover={{ rotate: 90, scale: 1.1 }}
                                     whileTap={{ scale: 0.9 }}
-                                    transition={{ type: "spring", stiffness: 280, damping: 18 }}
+                                    transition={{
+                                        type: "spring",
+                                        stiffness: 280,
+                                        damping: 18,
+                                    }}
                                 >
                                     <Icon name="close" size={24} />
                                 </motion.button>
@@ -257,7 +319,7 @@ export default function Navbar({ data }) {
 
                             <div className="flex-1 px-6 py-8 overflow-y-auto">
                                 <div className="space-y-2">
-                                    {data?.links?.map((link) => (
+                                    {links.map((link) => (
                                         <motion.a
                                             key={link.href}
                                             href={link.href}
@@ -272,7 +334,7 @@ export default function Navbar({ data }) {
                                             }}
                                             className="block px-4 py-4 text-lg rounded-lg text-primary hover:bg-gray-50"
                                         >
-                                            {link.title}
+                                            {link.text}
                                         </motion.a>
                                     ))}
                                 </div>
@@ -283,24 +345,22 @@ export default function Navbar({ data }) {
                                 className="p-6 border-t border-gray-100"
                             >
                                 <a
-                                    href={data?.cta?.href}
+                                    href={"#contacts"}
                                     onClick={() => setMobileOpen(false)}
                                     className="block w-full py-4 rounded-lg bg-blue-600 text-white text-center hover:bg-blue-700 transition-colors"
                                 >
-                                    {data?.cta?.text}
+                                    Request a Quote
                                 </a>
 
-                                {data?.phone && (
-                                    <div className="mt-6 flex justify-center">
-                                        <a
-                                            href={`tel:${data.phone.replace(/\s+/g, "")}`}
-                                            className="flex items-center gap-2 text-gray-500 hover:text-primary"
-                                        >
-                                            <Icon name="language" size={18} />
-                                            <span>{data.phone}</span>
-                                        </a>
-                                    </div>
-                                )}
+                                <div className="mt-6 flex justify-center">
+                                    <a
+                                        href={`tel:01912500316`}
+                                        className="flex items-center gap-2 text-gray-500 hover:text-primary"
+                                    >
+                                        <Icon name="call" size={18} />
+                                        <span>01912500316</span>
+                                    </a>
+                                </div>
                             </motion.div>
                         </div>
                     </motion.div>
