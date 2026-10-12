@@ -64,7 +64,7 @@ export default function Landing() {
             </section>
 
             <section className="section-padding bg-linear-to-br from-blue-950 via-blue-800 to-blue-600 relative overflow-hidden text-white pb-0!">
-                <Footer data={data.footer} />
+                <Footer />
             </section>
         </div>
     );
