@@ -48,7 +48,7 @@ export default function Landing() {
                 <Testimonials data={data.testimonials} />
             </section>
             <section
-                id="#contacts"
+                id="contacts"
                 className="section-padding bg-linear-to-br from-blue-950 via-blue-800 to-blue-600 relative overflow-hidden"
             >
                 {/* Background */}
