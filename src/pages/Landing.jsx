@@ -63,7 +63,7 @@ export default function Landing() {
                 <CTA data={data.cta} />
             </section>
 
-            <section className="section-padding bg-linear-to-br from-blue-950 via-blue-800 to-blue-600 relative overflow-hidden text-white pb-0!">
+            <section className="section-padding bg-linear-to-br from-blue-950 via-blue-800 to-blue-600 relative overflow-hidden text-white pb-0!" id="Footer">
                 <Footer />
             </section>
         </div>
