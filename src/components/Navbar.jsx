@@ -131,7 +131,7 @@ export default function Navbar() {
             text: "Insights",
         },
         {
-            href: "#contacts",
+            href: "#Footer",
             text: "Contacts",
         },
     ];
