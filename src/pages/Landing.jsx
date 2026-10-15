@@ -2,6 +2,7 @@ import Navbar from "../components/Navbar";
 import Hero from "../components/Hero";
 import { useContent } from "../hooks/useContent";
 import Trust from "../components/Trust";
+import Shipping from "../components/Shipping";
 import Stats from "../components/Stats";
 import About from "../components/About";
 import Services from "../components/Services";
@@ -12,58 +13,25 @@ import Testimonials from "../components/Testimonials";
 import CTA from "../components/CTA";
 import Footer from "../components/Footer";
 import Loader from "../components/Loader";
-import { useEffect } from "react";
 
 export default function Landing() {
+    // TODO: Remove Fetch later.
+
     const { data, loading, error } = useContent();
-
-    useEffect(() => {
-        if (data?.siteTitle) {
-            document.title = data.siteTitle.toUpperCase();
-        }
-    }, [data?.siteTitle]);
-
-    // First-ever load (no cache yet): show full-page loader.
     if (loading && !data) {
         return <Loader />;
     }
 
-    // No cache + fetch failed: show a clear error instead of crashing.
-    if (!data) {
-        return (
-            <div className="min-h-screen flex flex-col items-center justify-center text-center px-4">
-                <h1 className="text-2xl font-bold text-gray-800 mb-2">
-                    Unable to load content
-                </h1>
-                <p className="text-gray-500 mb-4">
-                    {error || "Please check your connection and try again."}
-                </p>
-                <button
-                    onClick={() => window.location.reload()}
-                    className="px-4 py-2 rounded bg-accent text-white font-medium hover:opacity-90"
-                >
-                    Retry
-                </button>
-            </div>
-        );
-    }
-
     return (
         <div className="min-h-screen bg-white">
-            <Navbar data={data.navbar} />
-            <Hero data={data.hero} />
-            <Trust data={data.trust} />
-            <Stats data={data.stats} />
-            <section className="section-padding">
-                <About data={data.about} />
-            </section>
-            <section className="section-padding">
-                <Services data={data.services} />
-            </section>
-            <section
-                id="about"
-                className="section-padding bg-linear-to-br from-blue-950 via-blue-800 to-blue-600 relative overflow-hidden"
-            >
+            <Navbar />
+            <Hero />
+            <Trust />
+            <Shipping />
+            <Stats />
+            <About />
+            <Services />
+            <section className="section-padding bg-linear-to-br from-blue-950 via-blue-800 to-blue-600 relative overflow-hidden">
                 {/* Decorative blur */}
                 <div className="absolute -top-32 -right-32 h-80 w-80 rounded-full bg-white/10 blur-3xl" />
                 <div className="absolute -bottom-32 -left-32 h-80 w-80 rounded-full bg-accent/20 blur-3xl" />
@@ -80,7 +48,7 @@ export default function Landing() {
                 <Testimonials data={data.testimonials} />
             </section>
             <section
-                id="contactos"
+                id="contacts"
                 className="section-padding bg-linear-to-br from-blue-950 via-blue-800 to-blue-600 relative overflow-hidden"
             >
                 {/* Background */}
@@ -95,8 +63,8 @@ export default function Landing() {
                 <CTA data={data.cta} />
             </section>
 
-            <section className="section-padding bg-linear-to-br from-blue-950 via-blue-800 to-blue-600 relative overflow-hidden text-white pb-0!">
-                <Footer data={data.footer} />
+            <section className="section-padding bg-linear-to-br from-blue-950 via-blue-800 to-blue-600 relative overflow-hidden text-white pb-0!" id="Footer">
+                <Footer />
             </section>
         </div>
     );

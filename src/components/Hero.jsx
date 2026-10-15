@@ -151,7 +151,7 @@ const titleRightVariants = {
     },
 };
 
-export default function Hero({ data }) {
+export default function Hero() {
     const [seeds, setSeeds] = useState([]);
     const [navReady, setNavReady] = useState(false);
     const prefersReducedMotion = useReducedMotion();
@@ -188,13 +188,18 @@ export default function Hero({ data }) {
             })),
         [seeds, prefersReducedMotion],
     );
+    const video = [
+        "/Video/hero-video1.mp4",
+        "/Video/hero-video2.mp4",
+        "/Video/hero-video3.mp4",
+    ];
 
     return (
         <div
             id="hero"
             className="relative h-screen w-full overflow-hidden bg-primary"
         >
-            <VideoBackdrop video={data.video} />
+            <VideoBackdrop video={video} />
 
             <div className="absolute inset-0 pointer-events-none">
                 {particleStyles.map((style, i) => (
@@ -224,7 +229,7 @@ export default function Hero({ data }) {
                     <motion.img
                         alt="hero logo"
                         className="h-16 sm:h-18 md:h-28 w-auto object-contain mx-auto drop-shadow-[0_0_25px_rgba(255,255,255,0.25)]"
-                        src={data.logo}
+                        src="/logo1x1.png"
                         animate={{ y: [0, -8, 0] }}
                         transition={{
                             duration: 4,
@@ -241,7 +246,7 @@ export default function Hero({ data }) {
                         initial="hidden"
                         animate={navReady ? "show" : "hidden"}
                     >
-                        {data.titlePart1}
+                        OHI
                     </motion.span>
                     <motion.span
                         className="inline-block ml-3 bg-linear-to-r from-white via-white to-white/70 bg-clip-text text-transparent"
@@ -249,7 +254,7 @@ export default function Hero({ data }) {
                         initial="hidden"
                         animate={navReady ? "show" : "hidden"}
                     >
-                        {data.titlePart2}
+                        INTERNATIONAL
                     </motion.span>
                 </motion.h1>
 
@@ -257,7 +262,7 @@ export default function Hero({ data }) {
                     className="text-sm sm:text-base md:text-lg lg:text-xl text-white/80 mb-8 sm:mb-10 md:mb-12 font-light tracking-[0.2em] sm:tracking-[0.3em] text-center uppercase px-4"
                     variants={itemVariants}
                 >
-                    {data.subtitle.map((item, i) => (
+                    {["Transport", "Sea", "Solutions"].map((item, i) => (
                         <span key={item}>
                             {i > 0 && (
                                 <span className="text-white/40"> | </span>
@@ -271,7 +276,7 @@ export default function Hero({ data }) {
                     className="text-sm sm:text-base md:text-lg lg:text-xl text-white/70 mb-8 sm:mb-10 md:mb-12 font-light text-center max-w-xl lg:max-w-2xl px-4"
                     variants={itemVariants}
                 >
-                    {data.description}
+                    We connect destinations, we drive business.
                 </motion.p>
 
                 <motion.div
@@ -279,7 +284,7 @@ export default function Hero({ data }) {
                     variants={ctaContainerVariants}
                 >
                     <motion.a
-                        href={data.primaryCta.href}
+                        href="#contacts"
                         className="px-8 sm:px-10 lg:px-12 py-3 sm:py-4 bg-white text-primary font-light tracking-[0.15em] sm:tracking-[0.2em] uppercase text-xs sm:text-sm text-center"
                         variants={ctaVariants}
                         whileHover={{
@@ -293,10 +298,10 @@ export default function Hero({ data }) {
                             damping: 18,
                         }}
                     >
-                        {data.primaryCta.text}
+                        Request a Quote
                     </motion.a>
                     <motion.a
-                        href={data.secondaryCta.href}
+                        href="#companies"
                         className="px-8 sm:px-10 lg:px-12 py-3 sm:py-4 bg-transparent border border-white/50 text-white font-light tracking-[0.15em] sm:tracking-[0.2em] uppercase text-xs sm:text-sm backdrop-blur-sm text-center"
                         variants={ctaVariants}
                         whileHover={{
@@ -312,7 +317,7 @@ export default function Hero({ data }) {
                             damping: 18,
                         }}
                     >
-                        {data.secondaryCta.text}
+                        Explore
                     </motion.a>
                 </motion.div>
 

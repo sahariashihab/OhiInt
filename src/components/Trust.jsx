@@ -34,13 +34,24 @@ const logoVariants = {
     },
 };
 
-export default function Trust({ data }) {
+export default function Trust() {
     const prefersReducedMotion = useReducedMotion();
 
+    const trusted = [
+        "BEXIMCO Group",
+        "Bashundhara Group",
+        "DBL Group",
+        "Auko-Tex Group",
+        "Pretty Group",
+    ];
     return (
-        <section className="py-12 bg-white border-b border-gray-200 overflow-hidden">
+        <section
+            className="py-24 bg-white border-b border-gray-200 overflow-hidden"
+            id="companies"
+        >
             <motion.div
                 className="container-custom"
+                id=""
                 variants={containerVariants}
                 initial="hidden"
                 whileInView="show"
@@ -50,11 +61,11 @@ export default function Trust({ data }) {
                     className="text-center text-gray-500 text-xs tracking-[0.2em] uppercase mb-8 font-light"
                     variants={headingVariants}
                 >
-                    {data.heading}
+                    Companies that Trust Us
                 </motion.p>
 
                 <div className="flex flex-wrap justify-center items-center gap-8 md:gap-12">
-                    {data.logos.map((name, i) => (
+                    {trusted.map((name) => (
                         <motion.div
                             key={name}
                             variants={logoVariants}

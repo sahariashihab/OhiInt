@@ -24,7 +24,7 @@ const slideUpVariants = {
     },
 };
 
-export default function Footer({ data }) {
+export default function Footer() {
     return (
         <footer className="gradient-bg text-white">
             <motion.div
@@ -34,22 +34,20 @@ export default function Footer({ data }) {
                 viewport={{ once: true, amount: 0.15 }}
                 className="container-custom py-16"
             >
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
-                    <motion.div
-                        variants={slideUpVariants}
-                        className="lg:col-span-1"
-                    >
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-10 lg:gap-16">
+                    <motion.div variants={slideUpVariants}>
                         <img
                             alt="Footer logo"
                             className="h-14 w-auto object-contain mb-4 brightness-0 invert"
-                            src={data.logo}
+                            src="/logo.png"
                         />
                         <p className="text-white/60 font-light mb-6">
-                            {data.tagline}
+                            Global logistics solutions with excellence and
+                            commitment.
                         </p>
                         <div className="flex space-x-4">
                             <a
-                                href={data.social.facebook}
+                                href="#"
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 aria-label="Facebook"
@@ -58,7 +56,7 @@ export default function Footer({ data }) {
                                 <SocialIcon name="facebook" size={18} />
                             </a>
                             <a
-                                href={data.social.instagram}
+                                href="#"
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 aria-label="Instagram"
@@ -69,116 +67,77 @@ export default function Footer({ data }) {
                         </div>
                     </motion.div>
 
-                    {data.columns.map((col, i) => (
-                        <motion.div key={i} variants={slideUpVariants}>
-                            <h4 className="text-sm font-medium tracking-wider uppercase mb-4">
-                                {col.heading}
-                            </h4>
-                            {col.isContact ? (
-                                <ul className="space-y-3">
-                                    <li>
-                                        <a
-                                            href={`tel:${col.phone.replace(/\s/g, "")}`}
-                                            className="flex items-center gap-3 text-white/60 hover:text-white transition-colors font-light text-sm"
-                                        >
-                                            <Icon
-                                                name="phone"
-                                                filled={false}
-                                                size={16}
-                                            />
-                                            {col.phone}
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a
-                                            href={`mailto:${col.email}`}
-                                            className="flex items-center gap-3 text-white/60 hover:text-white transition-colors font-light text-sm"
-                                        >
-                                            <Icon
-                                                name="mail"
-                                                filled={false}
-                                                size={16}
-                                            />
-                                            {col.email}
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <div className="flex items-start gap-3 text-white/60 font-light text-sm">
-                                            <Icon
-                                                name="location_on"
-                                                size={16}
-                                                filled={false}
-                                                className="shrink-0 mt-0.5"
-                                            />
-                                            <span>
-                                                {col.addressLine1}
-                                                <br />
-                                                {col.addressLine2}
-                                            </span>
-                                        </div>
-                                    </li>
-                                </ul>
-                            ) : (
-                                <ul className="space-y-3">
-                                    {col.links.map((link) => (
-                                        <li key={link.text}>
-                                            <a
-                                                className="text-white/60 hover:text-white transition-colors font-light text-sm"
-                                                href={link.href}
-                                            >
-                                                {link.text}
-                                            </a>
-                                        </li>
-                                    ))}
-                                </ul>
-                            )}
-                        </motion.div>
-                    ))}
-                </div>
-
-                {data.newsletter?.visible !== false && (
-                    <motion.div
-                        variants={slideUpVariants}
-                        className="mt-16 pt-12 border-t border-white/10 flex flex-col md:flex-row justify-between items-start md:items-center gap-8"
-                    >
-                        <div className="max-w-md w-full">
-                            <h4 className="text-lg font-serif font-light mb-4">
-                                {data.newsletter.heading}
-                            </h4>
-                            <p className="text-white/60 mb-6 text-sm font-light">
-                                {data.newsletter.description}
-                            </p>
-                            <form
-                                className="flex flex-col sm:flex-row gap-4"
-                                onSubmit={(e) => e.preventDefault()}
-                            >
-                                <input
-                                    placeholder={data.newsletter.placeholder}
-                                    className="flex-1 px-4 py-3 bg-white/10 border border-white/20 text-white placeholder-white/40 focus:outline-none focus:border-white/50 transition-colors text-sm"
-                                    type="email"
-                                />
-                                <button
-                                    type="submit"
-                                    className="px-6 py-3 bg-white text-primary hover:bg-gray-100 transition-colors text-sm tracking-wider uppercase font-light cursor-pointer"
+                    <motion.div variants={slideUpVariants}>
+                        <h4 className="text-sm font-medium tracking-wider uppercase mb-4">
+                            Contacts
+                        </h4>
+                        <ul className="space-y-3">
+                            <li>
+                                <a
+                                    href={`tel:+8801912500316`}
+                                    className="flex items-center gap-3 text-white/60 hover:text-white transition-colors font-light text-sm"
                                 >
-                                    {data.newsletter.button}
-                                </button>
-                            </form>
-                        </div>
-                        <a
-                            href={data.complaintsBookUrl}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="hover:opacity-80 transition-opacity shrink-0"
-                        >
-                            <img
-                                alt={data.complaintsBookAlt}
-                                className="h-16 w-auto object-contain brightness-0 invert"
-                                src={data.complaintsBookImage}
-                            />
-                        </a>
+                                    <Icon
+                                        name="phone"
+                                        filled={false}
+                                        size={16}
+                                    />
+                                    +8801912500316
+                                </a>
+                            </li>
+                            <li>
+                                <a
+                                    href={`mailto:info@ohiinternational.com.bd`}
+                                    className="flex items-center gap-3 text-white/60 hover:text-white transition-colors font-light text-sm"
+                                >
+                                    <Icon
+                                        name="mail"
+                                        filled={false}
+                                        size={16}
+                                    />
+                                    info@ohiinternational.com.bd
+                                </a>
+                            </li>
+                            <li>
+                                <div className="flex items-start gap-3 text-white/60 font-light text-sm">
+                                    <Icon
+                                        name="location_on"
+                                        size={16}
+                                        filled={false}
+                                        className="shrink-0 mt-0.5"
+                                    />
+                                    <span className="min-w-0 wrap-break-word">
+                                        <a
+                                            href="https://maps.app.goo.gl/zHkht8kGY2XNx5xM6"
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            className="wrap-break-word hover:text-white transition-colors"
+                                        >
+                                            Sheba House Plot # 34,Road
+                                            #46,Gulshan North C/A, Gulshan-2,
+                                            Dhaka-1212
+                                        </a>
+                                    </span>
+                                </div>
+                            </li>
+
+                            <li>
+                                <div className="flex items-start gap-3 text-white/60 font-light text-sm">
+                                    <Icon
+                                        name="location_on"
+                                        size={16}
+                                        filled={false}
+                                        className="shrink-0 mt-0.5"
+                                    />
+                                    <span className="min-w-0 wrap-break-word">
+                                        Century Tower, 4th Floor, Agrabad Access
+                                        Road, Chattogram
+                                    </span>
+                                </div>
+                            </li>
+                        </ul>
                     </motion.div>
-                )}
+                </div>
             </motion.div>
 
             <div className="bg-black/20">
@@ -195,7 +154,7 @@ export default function Footer({ data }) {
                 >
                     <div className="flex flex-col sm:flex-row justify-between items-center gap-4 text-center md:text-left">
                         <p className="text-white/50 text-sm font-light">
-                            © {data.copyright}
+                            © 2026 Ohi International all rights reserved
                         </p>
                         <a
                             href="https://enigmanite.com"
